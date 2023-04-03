@@ -28,14 +28,27 @@ def compute_exact_match_metric(predictions, references) -> Dict[str, Any]:
 ### example
 predictions=[]
 references=[]
-with open("data/spider/predictions_gpt_3.5_turbo.json", 'r') as file:
+with open("data/spider/predictions_gpt_3.5_turbo_v2.json", 'r') as file:
     predictions = json.load(file)
+
+## extend 
+with open("data/spider/predictions_gpt_3.5_turbo_v2_2.json", 'r') as file:
+    predictions_2 = json.load(file)
+predictions.extend(predictions_2)
+
+with open("data/spider/predictions_gpt_3.5_turbo_v2.json", "w", encoding="utf-8") as f:
+    json.dump(predictions, f, ensure_ascii=False,indent=4)
+
 
 with open("data/spider/examples.json", 'r') as file:
     references = json.load(file)
 
+print(len(predictions), len(references))
+      
 # Compute the exact match metric
-exact_match_metric = compute_exact_match_metric(predictions, references[0:20])
-
+exact_match_metric = compute_exact_match_metric(predictions, references)
 # Print the result
 print(exact_match_metric)
+
+## gpt_3.5: 'exact_match': 'exact_match': 0.40425531914893614
+## text_davinci: 'exact_match': 0.28916827852998067
