@@ -62,17 +62,33 @@ from chat_process import *
 
 
 ## spider-dk
-data_filepath = "data/spider-dk/Spider-DK.json"
-db_path = "data/spider-dk/database"
+# data_filepath = "data/spider-dk/Spider-DK.json"
+# db_path = "data/spider-dk/database"
+
+# examples=generate_examples_lst(data_filepath, db_path)
+# with open("data/spider-dk/examples.json", "w") as out_file:
+#     json.dump(examples, out_file,indent=4)
+
+# formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
+# with open("data/spider-dk/formatted_spider_dk_data.json", "w", encoding="utf-8") as f:
+#     json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
+
+# serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
+# with open("data/spider-dk/serialized_dk_data_str.json", "w", encoding="utf-8") as f:
+#     json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
+
+## dr.spider_db_dbcontent_equivalence
+data_filepath = "data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/questions_post_perturbation.json"
+db_path = "data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/database_post_perturbation"
 
 examples=generate_examples_lst(data_filepath, db_path)
-with open("data/spider-dk/examples.json", "w") as out_file:
+with open("data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/examples.json", "w") as out_file:
     json.dump(examples, out_file,indent=4)
 
 formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
-with open("data/spider-dk/formatted_spider_dk_data.json", "w", encoding="utf-8") as f:
+with open("data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/formatted_spider_dr_dbcontent_equivalence_data.json", "w", encoding="utf-8") as f:
     json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
 
 serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
-with open("data/spider-dk/serialized_dk_data_str.json", "w", encoding="utf-8") as f:
+with open("data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/serialized_dr_dbcontent_equivalence_data_str.json", "w", encoding="utf-8") as f:
     json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
