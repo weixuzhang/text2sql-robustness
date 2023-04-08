@@ -86,7 +86,7 @@ from chat_process import *
 
 # print(len(examples)) # 535
 
-################################## dr.spider_db_dbcontent_equivalence ##################################
+################################## dr.spider_db_content_equivalence ##################################
 
 # data_filepath = "data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/questions_post_perturbation.json"
 # db_path = "data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/database_post_perturbation"
@@ -96,11 +96,11 @@ from chat_process import *
 #     json.dump(examples, out_file,indent=4)
 
 # formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
-# with open("data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/formatted_spider_dr_dbcontent_equivalence_data.json", "w", encoding="utf-8") as f:
+# with open("data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/formatted_spider_dr_db_content_equivalence_data.json", "w", encoding="utf-8") as f:
 #     json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
 
 # serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
-# with open("data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/serialized_dr_dbcontent_equivalence_data_str.json", "w", encoding="utf-8") as f:
+# with open("data/diagnostic-robustness-text-to-sql/data/DB_DBcontent_equivalence/serialized_dr_db_content_equivalence_data_str.json", "w", encoding="utf-8") as f:
 #     json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
 
 # print(len(examples)) # 382
@@ -126,22 +126,22 @@ from chat_process import *
 
 ################################## dr.spider_db_schema_synonym ##################################
 
-# data_filepath = "data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/questions_post_perturbation.json"
-# db_path = "data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/database_post_perturbation"
+data_filepath = "data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/questions_post_perturbation.json"
+db_path = "data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/database_post_perturbation"
 
-# examples=generate_examples_lst(data_filepath, db_path)
-# with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_abbreviation/examples.json", "w") as out_file:
-#     json.dump(examples, out_file,indent=4)
+examples=generate_examples_lst(data_filepath, db_path)
+with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/examples.json", "w") as out_file:
+    json.dump(examples, out_file,indent=4)
 
-# formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
-# with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/formatted_spider_dr_db_schema_synonym_data.json", "w", encoding="utf-8") as f:
-#     json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
+formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
+with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/formatted_spider_dr_db_schema_synonym_data.json", "w", encoding="utf-8") as f:
+    json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
 
-# serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
-# with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/serialized_dr_db_schema_synonym_data_str.json", "w", encoding="utf-8") as f:
-#     json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
+serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
+with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/serialized_dr_db_schema_synonym_data_str.json", "w", encoding="utf-8") as f:
+    json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
 
-# print(len(examples)) # 2619
+print(len(examples)) # 2619
 
 ################################## dr.spider_nlq_column_attribute ##################################
 

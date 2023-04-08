@@ -48,24 +48,63 @@ def compute_test_suite_metric(predictions: List[str], references: List[Dict[str,
 ### example
 predictions=[]
 references=[]
-with open("data/spider/predictions_text_davinci_002.json", 'r') as file:
+
+
+with open("data/diagnostic-robustness-text-to-sql/data/NLQ_value_synonym/predictions_gpt_3.5_turbo_nlq_value_synonym.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
     predictions = json.load(file)
 
-with open("data/spider/examples.json", 'r') as file:
+with open("data/diagnostic-robustness-text-to-sql/data/NLQ_value_synonym/examples.json", 'r') as file:
     references = json.load(file)
-      
-# Compute the exact match metric
+
+print(len(predictions), len(references))
+
+# Compute the execution match metric
 execution_match_metric = compute_test_suite_metric(predictions, references)
 # Print the result
 print(execution_match_metric)
 
-## gpt_3.5_turbo_v2 {'exec': 0.6924564796905223}
-## gpt_3.5_turbo_ex {'exec': 0.7137330754352031}
-## gpt_3.5_turbo_ex_2 {'exec': 0.7137330754352031}
-
-## text_davinci_003 {'exec': 0.44197292069632493}
-## text_davinci_002 {'exec': 0.12475822050290135}
 
 ## idea: investigate the influence of prompts
 ## use promptes iteratively to improve the performance of the model
 ## inspiration: mitigate the gap between human and mechines
+## multiple turn; different difficuties; different prompts; different temperatures
+
+
+########### Spider ###########
+## gpt_3.5_turbo_v2 {'exec': 0.6924564796905223}
+## gpt_3.5_turbo_ex {'exec': 0.7137330754352031}
+## gpt_3.5_turbo_ex_2 {'exec': 0.7137330754352031}
+
+## text_davinci_003 {'exec': 0.5560928433268859}
+## text_davinci_002 {'exec': 0.12475822050290135}
+
+########### Spider-syn ###########
+## gpt_3.5_turbo: {'exec': 0.6170212765957447}
+## text_davinci_003: {'exec': 0.4332688588007737}
+
+########### Spider-dk ###########
+## gpt_3.5_turbo: {'exec': 0.5906542056074766}
+## text_davinci_003: {'exec': 0.5383177570093458}
+
+########### Spider-real ###########
+## gpt_3.5_turbo: {'exec': 0.6456692913385826}
+## text_davinci_003: {'exec': 0.5196850393700787}
+
+########### Dr.Spider ###########
+## db_content_equivalence: {'exec': 0.418848167539267}
+## db_schema_abbreviation: {'exec': 0.6400280406589555}
+## db_schema_synonym: {'exec': 0.5368461244749905}
+## nlq_column_attribute: {'exec': 0.6134453781512605}
+## nlq_column_carrier: {'exec': 0.6735751295336787}
+## nlq_column_synonym: {'exec': 0.47424511545293074}
+## nlq_column_value: {'exec': 0.5625}
+## nlq_keyword_carrier: {'exec': 0.7844611528822055}
+## nlq_keyword_synonym: {'exec': 0.5760755508919203}
+## nlq_multitype: {'exec': 0.5292376017764618}
+## nlq_others: {'exec': 0.6512947853848883}
+## nlq_value_synonym: {'exec': 0.4624505928853755}
+## sql_comparison: {'exec': 0.6910112359550562}
+## sql_db_number: {'exec': 0.7707317073170732}
+## sql_db_text: {'exec': 0.6553238199780461}
+## sql_nondb_number: {'exec': 0.8931297709923665}
+## sql_sort_order: {'exec': 0.609375}
