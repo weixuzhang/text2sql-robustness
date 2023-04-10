@@ -2,22 +2,28 @@ from chat_process import *
 
 
 ################################## spider ##################################
-# data_filepath = "data/spider/dev.json"
-# db_path = "database"
+data_filepath = "data/spider/dev.json"
+db_path = "database"
 
-# examples=generate_examples_lst(data_filepath, db_path)
-# with open("data/spider/examples.json", "w") as out_file:
-#     json.dump(examples, out_file,indent=4)
+examples=generate_examples_lst(data_filepath, db_path)
+with open("data/spider/examples.json", "w") as out_file:
+    json.dump(examples, out_file,indent=4)
 
-# formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
-# with open("data/spider/formatted_spider_data.json", "w", encoding="utf-8") as f:
-#     json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
+formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
+with open("data/spider/formatted_spider_data.json", "w", encoding="utf-8") as f:
+    json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
 
-# serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
-# with open("data/spider/serialized_data_str.json", "w", encoding="utf-8") as f:
-#     json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
+serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
+with open("data/spider/serialized_data_str.json", "w", encoding="utf-8") as f:
+    json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
 
-# print(len(examples)) # 1034
+print(len(examples)) # 1034
+
+##delete sql key in examples
+# for example in examples:
+#     del example["query"]
+# with open("data/spider/examples_without_sql.json", "w", encoding="utf-8") as f:
+#     json.dump(examples, f, ensure_ascii=False,indent=4)
 
 # processed_examples = [spider_add_serialized_schema_withnl(example) for example in examples]
 # with open("data/spider/processed_data.json", "w", encoding="utf-8") as f:
@@ -126,22 +132,22 @@ from chat_process import *
 
 ################################## dr.spider_db_schema_synonym ##################################
 
-data_filepath = "data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/questions_post_perturbation.json"
-db_path = "data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/database_post_perturbation"
+# data_filepath = "data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/questions_post_perturbation.json"
+# db_path = "data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/database_post_perturbation"
 
-examples=generate_examples_lst(data_filepath, db_path)
-with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/examples.json", "w") as out_file:
-    json.dump(examples, out_file,indent=4)
+# examples=generate_examples_lst(data_filepath, db_path)
+# with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/examples.json", "w") as out_file:
+#     json.dump(examples, out_file,indent=4)
 
-formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
-with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/formatted_spider_dr_db_schema_synonym_data.json", "w", encoding="utf-8") as f:
-    json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
+# formatted_examples = [spider_pre_process_one_function(example, True) for example in examples]
+# with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/formatted_spider_dr_db_schema_synonym_data.json", "w", encoding="utf-8") as f:
+#     json.dump(formatted_examples, f, ensure_ascii=False,indent=4)
 
-serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
-with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/serialized_dr_db_schema_synonym_data_str.json", "w", encoding="utf-8") as f:
-    json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
+# serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
+# with open("data/diagnostic-robustness-text-to-sql/data/DB_schema_synonym/serialized_dr_db_schema_synonym_data_str.json", "w", encoding="utf-8") as f:
+#     json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
 
-print(len(examples)) # 2619
+# print(len(examples)) # 2619
 
 ################################## dr.spider_nlq_column_attribute ##################################
 

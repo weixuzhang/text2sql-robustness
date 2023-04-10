@@ -28,32 +28,43 @@ def compute_test_suite_metric(predictions: List[str], references: List[Dict[str,
     )
 
     turn_scores = {"exec": [], "exact": []}
+    #wrong_result=[]
     for prediction, reference in zip(predictions, references):
         try:
-            _ = evaluator.evaluate_one(
+            e = evaluator.evaluate_one(
                 reference["db_id"],
                 reference["query"],
                 prediction,
                 turn_scores,
                 idx=0,
             )
+            ## print wrong predictions
+            # if e['exec']!=1:
+            #     wrong_example={'question':reference['question'], 'goldSQL':reference['query'], 'predictSQL':prediction}
+            #     wrong_result.append(wrong_example)
+
         except AssertionError:
             pass
     evaluator.finalize()
 
+    ## save wrong predictions
+    # with open("data/spider/wrong_result_gpt_3.5_turbo_ex.json", 'w') as file:
+    #     json.dump(wrong_result, file,indent=4)
+
     return {
         "exec": evaluator.scores["all"]["exec"],
     }
+
 
 ### example
 predictions=[]
 references=[]
 
 
-with open("data/diagnostic-robustness-text-to-sql/data/NLQ_value_synonym/predictions_gpt_3.5_turbo_nlq_value_synonym.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
+with open("data/spider/predictions_gpt_3.5_turbo_ex.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
     predictions = json.load(file)
 
-with open("data/diagnostic-robustness-text-to-sql/data/NLQ_value_synonym/examples.json", 'r') as file:
+with open("data/spider/examples.json", 'r') as file:
     references = json.load(file)
 
 print(len(predictions), len(references))
