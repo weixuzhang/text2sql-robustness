@@ -63,26 +63,26 @@ def example_to_api_doc(example):
 
 ### one shot format
 def one_short(example, train_examples):
-    question = example['question']
+    question_schema = spider_add_serialized_schema_str(example)
     random.seed(42)
     random.shuffle(train_examples)
     serialized_one_examples_str=spider_add_serialized_schema_str(train_examples[0])
     example_str='Here is an examples including input and output:\n'
     example_str=example_str+" input: " +serialized_one_examples_str+ " output: "+ train_examples[0]['query']+ "\n"
-    example_str=example_str+" Now please use valid SQLite to answer the following questions: "+ question
+    example_str=example_str+" Now please use valid SQLite to answer the following questions: "+ question_schema
     return example_str
 
 
 ### 5 shot format
 def five_short(example, train_examples):
-    question = example['question']
+    question_schema = spider_add_serialized_schema_str(example)
     random.seed(42)
     random.shuffle(train_examples)
     serialized_5_examples_str=[spider_add_serialized_schema_str(example) for example in train_examples[0:5]]
     example_str='Here are 5 examples including input and output:\n'
     for i in range(5):
         example_str=example_str+" input: " +serialized_5_examples_str[i]+ " output: "+ train_examples[i]['query']+ "\n"
-    example_str=example_str+" Now please use valid SQLite to answer the following questions: "+ question
+    example_str=example_str+" Now please use valid SQLite to answer the following questions: "+ question_schema
     return example_str
 
 

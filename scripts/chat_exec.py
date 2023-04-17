@@ -68,7 +68,7 @@ predictions=[]
 references=[]
 
 
-with open("investigation/predictions_spider_davinci_temper_20.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
+with open("investigation/predictions_spider_prompt_5shot.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
     predictions = json.load(file)
 
 with open("data/spider/examples.json", 'r') as file:
