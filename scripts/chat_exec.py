@@ -28,7 +28,9 @@ def compute_test_suite_metric(predictions: List[str], references: List[Dict[str,
     )
 
     turn_scores = {"exec": [], "exact": []}
-    #wrong_result=[]
+    ## create list to save (wrong) predictions
+    # wrong_result=[]
+    # result=[]
     for prediction, reference in zip(predictions, references):
         try:
             e = evaluator.evaluate_one(
@@ -38,18 +40,23 @@ def compute_test_suite_metric(predictions: List[str], references: List[Dict[str,
                 turn_scores,
                 idx=0,
             )
-            ## print wrong predictions
+            ## add wrong predictions
             # if e['exec']!=1:
             #     wrong_example={'question':reference['question'], 'goldSQL':reference['query'], 'predictSQL':prediction}
             #     wrong_result.append(wrong_example)
+            # ## add all predictions
+            # example_result={'question':reference['question'], 'goldSQL':reference['query'], 'predictSQL':prediction, 'exec':e['exec']}
+            # result.append(example_result)
 
         except AssertionError:
             pass
     evaluator.finalize()
 
-    ## save wrong predictions
-    # with open("data/spider/wrong_result_gpt_3.5_turbo_ex.json", 'w') as file:
+    ## save (wrong) predictions
+    # with open("casestudy/wrong_result_gpt_3.5_style.json", 'w') as file:
     #     json.dump(wrong_result, file,indent=4)
+    # with open("casestudy/result_gpt_3.5_style.json", 'w') as file:
+    #     json.dump(result, file,indent=4)
 
     return {
         "exec": evaluator.scores["all"]["exec"],
@@ -61,16 +68,19 @@ predictions=[]
 references=[]
 
 
-with open("data/spider/predictions_gpt_3.5_turbo_ex.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
+with open("investigation/predictions_spider_davinci_temper_20.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
     predictions = json.load(file)
 
 with open("data/spider/examples.json", 'r') as file:
     references = json.load(file)
 
+# predictions=['SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)']
+# references=[references[6]]
+
 print(len(predictions), len(references))
 
 # Compute the execution match metric
-execution_match_metric = compute_test_suite_metric(predictions, references)
+execution_match_metric = compute_test_suite_metric(predictions, references[0:200])
 # Print the result
 print(execution_match_metric)
 
@@ -119,3 +129,9 @@ print(execution_match_metric)
 ## sql_db_text: {'exec': 0.6553238199780461}
 ## sql_nondb_number: {'exec': 0.8931297709923665}
 ## sql_sort_order: {'exec': 0.609375}
+
+########### typo ###########
+## gpt_3.5_turbo: {'exec': 0.648936170212766}
+
+########### style ###########
+## gpt_3.5_turbo: {'exec': 0.6450676982591876}

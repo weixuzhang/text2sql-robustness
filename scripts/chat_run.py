@@ -416,22 +416,43 @@ print(len(examples)) # 1034
 # print(len(examples)) # 192
 
 ################################## spider_typo ##################################
-data_filepath = "data/spider/dev.json"
-db_path = "database"
-perturbation_path = "data/spider/perturbation_spider_typo.json"
+# data_filepath = "data/spider/dev.json"
+# db_path = "database"
+# perturbation_path = "data/spider/perturbation_spider_typo.json"
 
-examples=generate_examples_lst(data_filepath, db_path)
-with open(perturbation_path, 'r') as file:
-    perturbations = json.load(file)
+# examples=generate_examples_lst(data_filepath, db_path)
+# with open(perturbation_path, 'r') as file:
+#     perturbations = json.load(file)
 
-for i in range(len(examples)):
-    examples[i]['question'] = perturbations[i]
+# for i in range(len(examples)):
+#     examples[i]['question'] = perturbations[i]
 
-with open("data/spider/typo_examples.json", "w") as out_file:
-    json.dump(examples, out_file,indent=4)
+# with open("data/spider/typo_examples.json", "w") as out_file:
+#     json.dump(examples, out_file,indent=4)
 
-serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
-with open("data/spider/serialized_typo_data_str.json", "w", encoding="utf-8") as f:
-    json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
+# serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
+# with open("data/spider/serialized_typo_data_str.json", "w", encoding="utf-8") as f:
+#     json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
 
-print(len(examples)) # 1034
+# print(len(examples)) # 1034
+
+################################## spider_style ##################################
+# data_filepath = "data/spider/dev.json"
+# db_path = "database"
+# perturbation_path = "data/spider/perturbation_spider_style.json"
+
+# examples=generate_examples_lst(data_filepath, db_path)
+# with open(perturbation_path, 'r') as file:
+#     perturbations = json.load(file)
+
+# for i in range(len(examples)):
+#     examples[i]['question'] = perturbations[i]
+
+# with open("data/spider/style_examples.json", "w") as out_file:
+#     json.dump(examples, out_file,indent=4)
+
+# serialized_examples_str=[spider_add_serialized_schema_str(example) for example in examples]
+# with open("data/spider/serialized_style_data_str.json", "w", encoding="utf-8") as f:
+#     json.dump(serialized_examples_str, f, ensure_ascii=False,indent=4)
+
+# print(len(examples)) # 1034

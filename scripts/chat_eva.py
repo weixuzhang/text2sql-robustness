@@ -38,11 +38,18 @@ references=[]
 #     json.dump(predictions, f, ensure_ascii=False,indent=4)
 
 
-with open("data/diagnostic-robustness-text-to-sql/data/NLQ_value_synonym/predictions_gpt_3.5_turbo_nlq_value_synonym.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
+# with open("data/diagnostic-robustness-text-to-sql/data/NLQ_value_synonym/predictions_gpt_3.5_turbo_nlq_value_synonym.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
+#     predictions = json.load(file)
+
+# with open("data/diagnostic-robustness-text-to-sql/data/NLQ_value_synonym/examples.json", 'r') as file:
+#     references = json.load(file)
+
+with open("data/spider/predictions_gpt_3.5_turbo_style.json", 'r') as file: # predictions_gpt_3.5_turbo, predictions_text_davinci_003
     predictions = json.load(file)
 
-with open("data/diagnostic-robustness-text-to-sql/data/NLQ_value_synonym/examples.json", 'r') as file:
+with open("data/spider/examples.json", 'r') as file:
     references = json.load(file)
+
 
 print(len(predictions), len(references))
       
@@ -91,5 +98,8 @@ print(exact_match_metric)
 ## sql_nondb_number: {'exact_match': 0.5419847328244275}
 ## sql_sort_order: {'exact_match': 0.34375}
 
+########### typo ###########
+## gpt_3.5_turbo:  {'exact_match': 0.4748549323017408}
 
-
+########### style ###########
+## gpt_3.5_turbo:{'exact_match': 0.3994197292069632}
